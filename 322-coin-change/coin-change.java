@@ -1,40 +1,29 @@
 class Solution {
-    public int solve(int i,int amount,int[] coins,int[][] dp){
-        if(i==0){
-            if(amount % coins[i] == 0){
-                return amount/coins[i];
-            }
-            else{
-                return 1000000;
-            }
-        }
-
-        if(dp[i][amount]!=-1){
-            return dp[i][amount];
-        }
-
-        int nT = solve(i-1,amount,coins,dp);
-
-        int take = 1000000;
-        if(coins[i]<=amount){
-            take = 1+solve(i,amount-coins[i],coins,dp);
-
-        }
-
-        dp[i][amount] = Math.min(take,nT);
-        return dp[i][amount];
-    }
     public int coinChange(int[] coins, int amount) {
         int n = coins.length;
         int[][] dp = new int[n][amount+1];
-        for(int i=0;i<n;i++){
-            Arrays.fill(dp[i],-1);
+        for(int j=0;j<=amount;j++){
+            if(j%coins[0]==0){
+                dp[0][j] = j/coins[0];
+            }
+            else{
+                dp[0][j] = 1000000;
+            }
         }
-        int ans = solve(n-1,amount,coins,dp);
+        for(int i=1;i<n;i++){
+            for(int j=0;j<=amount;j++){
+                int nT = dp[i-1][j];
 
-        if(ans >= 1000000){
+                int take = 1000000;
+                if(coins[i]<=j){
+                    take = 1+dp[i][j-coins[i]];
+                }
+                dp[i][j] = Math.min(take,nT);
+            }
+        }
+        if(dp[n-1][amount]>=1000000){
             return -1;
         }
-        return ans;
+        return dp[n-1][amount];
     }
 }
