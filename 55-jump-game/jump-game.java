@@ -6,11 +6,8 @@ class Solution {
             if(i>maxIdx){
                 return false;
             }
-
-            maxIdx = Math.max(maxIdx,i+nums[i]);
+            maxIdx = Math.max(maxIdx,nums[i]+i);
         }
-
         return true;
-
     }
 }
