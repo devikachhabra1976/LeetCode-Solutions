@@ -4,16 +4,14 @@ class Solution {
         int m = s.length;
         Arrays.sort(g);
         Arrays.sort(s);
-        int left = 0;
-        int right = 0;
-        while(left < m && right < n){
-            if(g[right]<=s[left]){
-                right++;
+        int i = 0;
+        int j = 0;
+        while(i<n && j<m){
+            if(g[i]<=s[j]){
+                i++;
             }
-            left++;
+            j++;
         }
-
-         return right;
+        return i;
     }
-   
 }
