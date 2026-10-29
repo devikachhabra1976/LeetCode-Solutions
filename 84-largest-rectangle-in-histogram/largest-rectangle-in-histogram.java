@@ -1,23 +1,19 @@
 class Solution {
     public int largestRectangleArea(int[] heights) {
         int n = heights.length;
-        Stack<Integer> st = new Stack<>();
         int maxArea = 0;
+        Stack<Integer> st = new Stack<>();
         for(int i=0;i<=n;i++){
             while(!st.isEmpty() && (i==n || heights[st.peek()]>=heights[i])){
-                int height = heights[st.pop()];
-
-                int left = st.isEmpty() ? -1:st.peek();
+                int h = heights[st.pop()];
+                int left = st.isEmpty()?-1:st.peek();
                 int width = i - left - 1;
-
-                int area = width * height;
+                int area = h * width;
                 maxArea = Math.max(area,maxArea);
-
 
             }
             st.push(i);
         }
-
-        return maxArea;
+     return maxArea;   
     }
 }
