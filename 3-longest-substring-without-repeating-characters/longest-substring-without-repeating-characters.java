@@ -4,15 +4,16 @@ class Solution {
         int max = 0;
         int left = 0;
         HashSet<Character> set = new HashSet<>();
-        for(int right = 0;right<n;right++){
-            while(set.contains(s.charAt(right))){
+        for(int r=0;r<n;r++){
+            while(set.contains(s.charAt(r))){
                 set.remove(s.charAt(left));
                 left++;
             }
-            set.add(s.charAt(right));
-            max = Math.max(max,right - left + 1);
+            set.add(s.charAt(r));
+            max = Math.max(max,r-left+1);
 
         }
         return max;
+
     }
 }
