@@ -6,7 +6,6 @@ class Solution {
         int jumps = 0;
         for(int i=0;i<n-1;i++){
             far = Math.max(far,nums[i]+i);
-
             if(i==end){
                 jumps++;
                 end = far;
